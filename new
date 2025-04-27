@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Legal Assistant Chatbot</title>
+    <style>
+        .chatbot {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 300px;
+            height: 400px;
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+            overflow: hidden;
+            display: none; /* Initially hidden */
+            flex-direction: column;
+            z-index: 999;
+        }
+
+        .chatbot-header {
+            background: #003366;
+            color: white;
+            padding: 10px;
+            font-weight: bold;
+            text-align: center;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chatbot-body {
+            flex: 1;
+            padding: 10px;
+            overflow-y: auto;
+            height: 300px;
+        }
+
+        .chatbot-input {
+            display: flex;
+            border-top: 1px solid #ccc;
+        }
+
+        .chatbot-input input {
+            flex: 1;
+            padding: 10px;
+            border: none;
+            outline: none;
+        }
+
+        .chatbot-input button {
+            background: #003366;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+        }
+
+        .user-message {
+            background: #e3f2fd;
+            padding: 8px;
+            margin: 5px;
+            border-radius: 8px;
+            text-align: right;
+        }
+
+        .bot-message {
+            background: #f5f5f5;
+            padding: 8px;
+            margin: 5px;
+            border-radius: 8px;
+        }
+
+        .chatbot-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            cursor: pointer;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+            z-index: 1000; /* Ensure it's above the chatbot */
+        }
+
+        .chatbot-button:hover {
+            transform: scale(1.1);
+        }
+
+        .close-btn {
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .close-btn:hover {
+            color: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- Chatbot Button -->
+<div class="chatbot-button" id="chatbot-button" onclick="toggleChatbot()">
+    <img src="https://cdn-icons-png.flaticon.com/512/4712/4712027.png" alt="AI Assistant" width="50" height="50">
+</div>
+
+<!-- Chatbot -->
+<div class="chatbot" id="chatbot">
+    <div class="chatbot-header">
+        Legal Assistant
+        <span class="close-btn" onclick="toggleChatbot()">×</span>
+    </div>
+    <div class="chatbot-body" id="chatbot-body">
+        <div class="bot-message">How can I help you?</div>
+    </div>
+    <div class="chatbot-input">
+        <input type="text" id="user-input" placeholder="Type here..." onkeydown="if(event.key === 'Enter') sendMessage()">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
+
+<!-- Script -->
+<script>
+    const chatbot = document.getElementById('chatbot');
+    const chatbotButton = document.getElementById('chatbot-button');
+    const chatbotBody = document.getElementById('chatbot-body');
+    const userInputField = document.getElementById('user-input');
+
+    function toggleChatbot() {
+        if (chatbot.style.display === 'none') {
+            chatbot.style.display = 'flex';
+            chatbotButton.style.display = 'none';
+        } else {
+            chatbot.style.display = 'none';
+            chatbotButton.style.display = 'block';
+        }
+    }
+
+    function sendMessage() {
+        const userInput = userInputField.value.trim().toLowerCase();
+        if (userInput !== '') {
+            // Show user message
+            const userMessage = document.createElement('div');
+            userMessage.className = 'user-message';
+            userMessage.textContent = userInputField.value;
+            chatbotBody.appendChild(userMessage);
+
+            // Generate bot response based on user input
+            const botMessage = document.createElement('div');
+            botMessage.className = 'bot-message';
+
+            switch (userInput) {
+                case 'talk me in marathi':
+                    botMessage.textContent = "मी तुम्हाला कशी मदत करू शकतो?";
+                    break;
+                case 'talk me in hindi':
+                    botMessage.textContent = "मैं आपकी कैसे मदद कर सकता हूँ?";
+                    break;
+                case 'talk me in english':
+                    botMessage.textContent = "How can I help you?";
+                    break;
+                case 'instructions for making pan card':
+                    botMessage.textContent = `Visit the official website: https://www.onlineservices.nsdl.com or go to a PAN service center.
+
+1. Fill the PAN application form (Form 49A for Indian citizens).
+2. Upload your identity proof (Aadhar card, Passport, Voter ID).
+3. Upload your address proof (Electricity bill, Aadhar card, Passport).
+4. Upload a recent passport-sized photograph.
+5. Pay the application fee (around ₹93 for Indian address).
+6. Submit the form and documents.
+7. You will receive an acknowledgment number.
+8. Use the acknowledgment number to track your application.
+9. PAN card will be delivered to your address in about 15–20 working days.`;
+                    break;
+                case 'instructions for making driving license':
+                    botMessage.textContent = `Visit the official transport department website of your state or visit RTO office.
+
+1. Fill the application form for Learner's License.
+2. Submit identity proof, age proof, and address proof.
+3. Book a slot for Learner's License test.
+4. Appear for the Learner's License online or written test.
+5. After passing, you will get a Learner's License (valid for 6 months).
+6. Practice driving.
+7. After 30 days of getting the Learner's License, apply for a Permanent Driving License.
+8. Book a driving test appointment.
+9. Appear for the practical driving test.
+10. If you pass, your Driving License will be issued within a few weeks.`;
+                    break;
+                case 'tell me about rte':
+                    botMessage.textContent = `The Right to Education Act was passed in 2009 in India.
+
+1. It makes free and compulsory education a right for every child aged 6 to 14 years.
+2. No child can be held back, expelled, or required to pass a board exam till the completion of elementary education.
+3. 25% seats in private schools must be reserved for children from economically weaker sections.
+4. Schools must follow government norms for teacher qualifications and infrastructure.
+5. No child shall pay any capitation fee or donation for admission.`;
+                    break;
+                case 'what are basic public awareness rules':
+                    botMessage.textContent = `1. Always carry your identity proof when traveling or driving.
+2. Do not litter in public places; use dustbins.
+3. Wear a helmet while riding two-wheelers and a seatbelt while driving.
+4. Follow traffic signals and pedestrian rules.
+5. Report crimes to the police; use emergency number 112.
+6. Respect government property like buses, parks, and offices.
+7. Pay taxes on time.
+8. Participate in voting during elections.
+9. Respect the rights and dignity of others.
+10. Do not spread rumors or false information, especially on social media.`;
+                    break;
+                case 'tell me about rte in hindi':
+                    botMessage.textContent = `शिक्षा का अधिकार अधिनियम 2009 में भारत में पारित हुआ था।
+
+1. यह 6 से 14 वर्ष के प्रत्येक बच्चे के लिए निःशुल्क और अनिवार्य शिक्षा का अधिकार सुनिश्चित करता है।
+
+2. किसी भी बच्चे को प्राथमिक शिक्षा पूरी होने तक फेल नहीं किया जाएगा, बाहर नहीं निकाला जाएगा और बोर्ड परीक्षा पास करने के लिए मजबूर नहीं किया जाएगा।
+
+3. निजी स्कूलों में 25% सीटें आर्थिक रूप से कमजोर वर्गों के बच्चों के लिए आरक्षित करनी होंगी।
+
+4. स्कूलों को शिक्षक योग्यता और अवसंरचना के सरकारी मानकों का पालन करना होगा।
+
+5. प्रवेश के लिए किसी भी बच्चे से कोई कैपिटेशन फीस या डोनेशन नहीं लिया जाएगा।`;
+                    break;
+                case 'instructions for making pan card in hindi':
+                    botMessage.textContent = `आधिकारिक वेबसाइट पर जाएं: https://www.onlineservices.nsdl.com या किसी पैन सेवा केंद्र पर जाएं।
+
+1. पैन आवेदन फॉर्म (भारतीय नागरिकों के लिए फॉर्म 49A) भरें।
+2. अपनी पहचान प्रमाण (आधार कार्ड, पासपोर्ट, वोटर आईडी) अपलोड करें।
+3. अपना पता प्रमाण (बिजली बिल, आधार कार्ड, पासपोर्ट) अपलोड करें।
+4. एक हालिया पासपोर्ट साइज फोटो अपलोड करें।
+5. आवेदन शुल्क (लगभग ₹93 भारतीय पते के लिए) का भुगतान करें।
+6. फॉर्म और दस्तावेज़ जमा करें।
+7. आपको एक स्वीकृति संख्या (Acknowledgment Number) मिलेगी।
+8. इस नंबर से अपने आवेदन की स्थिति ट्रैक करें।
+9. पैन कार्ड लगभग 15–20 कार्यदिवसों में आपके पते पर भेज दिया जाएगा।`;
+                    break;
+                case 'instructions for making driving license in hindi':
+                    botMessage.textContent = `अपने राज्य के परिवहन विभाग की आधिकारिक वेबसाइट पर जाएं या आरटीओ कार्यालय जाएं।
+
+1. लर्नर लाइसेंस के लिए आवेदन फॉर्म भरें।
+2. पहचान प्रमाण, आयु प्रमाण और पता प्रमाण जमा करें।
+3. लर्नर लाइसेंस टेस्ट के लिए स्लॉट बुक करें।
+4. ऑनलाइन या लिखित लर्नर लाइसेंस टेस्ट दें।
+5. पास होने पर आपको लर्नर लाइसेंस (6 महीने के लिए वैध) मिलेगा।
+6. ड्राइविंग का अभ्यास करें।
+7. लर्नर लाइसेंस मिलने के 30 दिन बाद, स्थायी ड्राइविंग लाइसेंस के लिए आवेदन करें।
+8. ड्राइविंग टेस्ट के लिए अपॉइंटमेंट बुक करें।
+9. व्यावहारिक ड्राइविंग टेस्ट दें।
+10. पास होने पर कुछ हफ्तों में आपका ड्राइविंग लाइसेंस जारी कर दिया जाएगा।`;
+                    break;
+                case 'what are basic public awareness rules in hindi':
+                    botMessage.textContent = `1. यात्रा या ड्राइव करते समय हमेशा अपनी पहचान प्रमाण साथ रखें।
+2. सार्वजनिक स्थानों पर गंदगी न करें; डस्टबिन का उपयोग करें।
+3. दोपहिया वाहन चलाते समय हेलमेट पहनें और कार चलाते समय सीट बेल्ट लगाएं।
+4. ट्रैफिक सिग्नल और पैदल यात्री नियमों का पालन करें।
+5. अपराधों की सूचना पुलिस को दें; आपातकालीन नंबर 112 का उपयोग करें।
+6. सरकारी संपत्ति जैसे बस, पार्क, और कार्यालयों का सम्मान करें।
+7. समय पर करों का भुगतान करें।
+8. चुनावों में मतदान में भाग लें।
+9. दूसरों के अधिकारों और गरिमा का सम्मान करें।
+10. अफवाहें या झूठी जानकारी न फैलाएं, खासकर सोशल मीडिया पर।`;
+                    break;
+                case 'tell me about rte in marathi':
+                    botMessage.textContent = `शिक्षणाचा हक्क कायदा भारतात 2009 साली पास झाला.
+
+1. 6 ते 14 वर्षे वयोगटातील प्रत्येक मुलासाठी मोफत आणि सक्तीचे शिक्षण हा अधिकार आहे.
+2. प्राथमिक शिक्षण पूर्ण होईपर्यंत कोणत्याही मुलाला नापास केले जाऊ शकत नाही, बाहेर काढले जाऊ शकत नाही किंवा बोर्ड परीक्षा पास करायला लावले जाऊ शकत नाही.
+3. खासगी शाळांमध्ये 25% जागा आर्थिकदृष्ट्या दुर्बल गटातील मुलांसाठी राखीव असाव्यात.
+4. शिक्षक पात्रता आणि शाळेची सुविधा सरकारच्या नियमांनुसार असणे बंधनकारक आहे.
+5. प्रवेशासाठी कोणत्याही प्रकारचा डोनेशन किंवा अतिरिक्त फी आकारली जाऊ शकत नाही.`;
+                    break;
+                case 'instructions for making pan card in marathi':
+                    botMessage.textContent = `अधिकृत वेबसाइटवर जा: https://www.onlineservices.nsdl.com किंवा जवळच्या पॅन सेवा केंद्रावर जा.
+
+1. पॅन अर्ज फॉर्म भरा (भारतीय नागरिकांसाठी फॉर्म 49A).
+2. तुमचा ओळख पुरावा (आधार कार्ड, पासपोर्ट, मतदार ओळखपत्र) अपलोड करा.
+3. तुमचा पत्ता पुरावा (वीज बिल, आधार कार्ड, पासपोर्ट) अपलोड करा.
+4. एक अलीकडील पासपोर्ट साइज फोटो अपलोड करा.
+5. अर्ज शुल्क (सुमारे ₹93 भारतीय पत्त्यासाठी) भरा.
+6. फॉर्म आणि कागदपत्रे सबमिट करा.
+7. तुम्हाला एक अcknowledgment नंबर मिळेल.
+8. या नंबरच्या मदतीने अर्जाची स्थिती ट्रॅक करा.
+9. सुमारे 15–20 कामकाजाच्या दिवसांत पॅन कार्ड तुमच्या पत्त्यावर पोहोचवले जाईल.`;
+                    break;
+                case 'instructions for making driving license in marathi':
+                    botMessage.textContent = `आपल्या राज्याच्या परिवहन विभागाच्या अधिकृत वेबसाइटवर जा किंवा RTO कार्यालयात जा.
+
+1. लर्नर लायसन्ससाठी अर्ज फॉर्म भरा.
+2. ओळख पुरावा, वयाचा पुरावा आणि पत्ता पुरावा सबमिट करा.
+3. लर्नर लायसन्स चाचणीसाठी स्लॉट बुक करा.
+4. लर्नर लायसन्सची ऑनलाइन किंवा लेखी चाचणी द्या.
+5. चाचणी उत्तीर्ण केल्यावर तुम्हाला लर्नर लायसन्स (6 महिन्यांसाठी वैध) मिळेल.
+6. वाहन चालवण्याचा सराव करा.
+7. लर्नर लायसन्स मिळाल्यानंतर 30 दिवसांनी कायमस्वरूपी ड्रायव्हिंग लायसन्ससाठी अर्ज करा.
+8. ड्रायव्हिंग टेस्टसाठी अपॉइंटमेंट बुक करा.
+9. प्रात्यक्षिक ड्रायव्हिंग टेस्ट द्या.
+10. टेस्ट उत्तीर्ण झाल्यास काही आठवड्यांत ड्रायव्हिंग लायसन्स दिले जाईल.`;
+                    break;
+                case 'what are basic public awareness rules in marathi':
+                    botMessage.textContent = `1. प्रवास करताना किंवा वाहन चालवतांना ओळख पुरावा सोबत ठेवा.
+2. सार्वजनिक ठिकाणी कचरा टाकू नका; डस्टबिन वापरा.
+3. दुचाकी चालवताना हेल्मेट घाला आणि चारचाकी चालवताना सीट बेल्ट लावा.
+4. ट्रॅफिक सिग्नल आणि पादचारी नियमांचे पालन करा.
+5. गुन्ह्याची माहिती पोलिसांना द्या; आपत्कालीन क्रमांक 112 वापरा.
+6. सार्वजनिक मालमत्तेचा आदर करा.
+7. वेळेवर कर भरा.
+8. निवडणुकीमध्ये मतदान करा.
+9. इतरांच्या हक्कांचा आणि प्रतिष्ठेचा आदर करा.
+10. अफवा किंवा खोटी माहिती, विशेषतः सोशल मिडियावर, पसरवू नका.`;
+                    break;
+                default:
+                    botMessage.textContent = "You can ask me about:\n- PAN card instructions\n- Driving license process\n- RTE (Right to Education)\n- Public awareness rules\n- Language preferences (English, Hindi, Marathi)";
+            }
+
+            chatbotBody.appendChild(botMessage);
+            userInputField.value = '';
+            chatbotBody.scrollTop = chatbotBody.scrollHeight;
+        }
+    }
+
+    // Initially hide the chatbot and show the button
+    document.addEventListener('DOMContentLoaded', () => {
+        chatbot.style.display = 'none';
+        chatbotButton.style.display = 'block';
+    });
+</script>
+
+</body>
+</html>

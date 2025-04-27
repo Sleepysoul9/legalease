@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ask Lawyer - LegalEase</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .business-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            padding: 40px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: white;
+            padding: 20px;
+            margin: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            width: 300px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .service-card h2 {
+            color: #207577;
+            margin-bottom: 10px;
+        }
+
+        .service-card p {
+            color: #666;
+            line-height: 1.5;
+        }
+
+        #page1 {
+            background: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)),
+                        url('business-bg.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="main">
+        <nav>
+            <a href="index.html"><img height="70px" width="70px" src="WhatsApp Image 2025-04-27 at 08.24.39_921c2409.jpg"></a>
+            <button class="button">Business Setup</button>
+            <button class="button">Documentation</button>
+            <button class="button">Ask a Lawyer</button>
+            <button id="others" class="button">Others</button>
+        </nav>
+        <div id="fake"></div>
+        <div id="page1" class="page">
+            <h1>Ask Lawyer</h1>
+            <div class="business-content">
+                <div class="service-card">
+                    <h2>Lawyer</h2>
+                    <p>Ph.no: XXXXXXXXXX</p>
+                </div>
+                <div class="service-card">
+                    <h2>Lawyer</h2>
+                    <p>Ph.no: XXXXXXXXXX</p>
+                </div>
+                <div class="service-card">
+                    <h2>Lawyer</h2>
+                    <p>Ph.no: XXXXXXXXXX</p>
+                </div>
+                <div class="service-card">
+                    <h2>Lawyer</h2>
+                    <p>Ph.no: XXXXXXXXXX</p>
+                </div>
+            </div>
+        </div>
+        <div id="sidebar" class="sidebar">
+            <h2>Legal Services</h2>
+            <ul class="sidebar-tabs">
+                <li><a href="#">Criminal Law</a></li>
+                <li><a href="#">Civil Law</a></li>
+                <li><a href="#">Corporate Law</a></li>
+                <li><a href="#">Family Law</a></li>
+                <li><a href="#">Property Law</a></li>
+            </ul>
+        </div>
+        <div id="chatbot">
+            <img src="chatbot.png" alt="Chatbot Icon">
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

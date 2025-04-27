@@ -1,0 +1,231 @@
+<style>
+    /* Import Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Source+Serif+Pro:wght@400;700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+    /* Reset and Base Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        width: 100%;
+        min-height: 100%;
+        font-family: 'Montserrat', sans-serif;
+    }
+
+    body {
+        background-image: url('internet-law-concept-cyber-law-as-digital-legal-services-labor-law-lawyer-on-dark-blue-blurred-background-free-vector.jpg');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+
+    /* Navigation Styles */
+    nav {
+        width: 100%;
+        height: 80px;
+        background: linear-gradient(to right, #1d2122, #49617e);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0 30px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 1000;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+
+    .button {
+        background: none;
+        border: none;
+        font-size: 16px;
+        font-weight: 600;
+        color: white;
+        padding: 8px 16px;
+        transition: all 0.3s ease;
+    }
+
+    .button:hover {
+        background-color: #207577ef;
+        border-radius: 5px;
+        transform: translateY(-2px);
+    }
+
+    /* Scheme Cards Container */
+    .main_scheme {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        max-width: 1400px;
+        margin: 100px auto 40px;
+        padding: 20px;
+    }
+
+    /* Scheme Card Styles */
+    .scheme-card {
+        background: white;
+        padding: 30px;
+        border-radius: 12px;
+        width: 100%;
+        height: auto;
+        min-height: 400px;
+        text-align: center;
+        transition: all 0.3s ease;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .scheme-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+    }
+
+    .scheme-title {
+        font-family: 'Source Serif Pro', serif;
+        font-size: 24px;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 20px;
+        line-height: 1.3;
+    }
+
+    .scheme-description {
+        font-family: 'Source Serif Pro', serif;
+        font-size: 16px;
+        color: #555;
+        line-height: 1.6;
+        margin-bottom: 20px;
+    }
+
+    .scheme-button {
+        background-color: #207577;
+        color: white;
+        padding: 12px 24px;
+        border: none;
+        border-radius: 6px;
+        font-family: 'Source Serif Pro', serif;
+        font-size: 16px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        margin-top: auto;
+    }
+
+    .scheme-button:hover {
+        background-color: #185d5f;
+        transform: translateY(-2px);
+    }
+
+    /* Utility Classes */
+    img {
+        border-radius: 50%;
+        transition: transform 0.3s ease;
+    }
+
+    img:hover {
+        transform: scale(1.05);
+    }
+
+    /* Sidebar Styles */
+    .sidebar {
+        position: fixed;
+        top: 0;
+        right: -300px;
+        width: 300px;
+        height: 100%;
+        background-color: white;
+        box-shadow: -2px 0 15px rgba(0,0,0,0.15);
+        transition: all 0.3s ease;
+        padding: 90px 20px 20px;
+        z-index: 900;
+    }
+
+    .sidebar.active {
+        right: 0;
+    }
+
+    .sidebar-tabs {
+        list-style: none;
+        padding: 0;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+        .main_scheme {
+            padding: 15px;
+            margin-top: 90px;
+        }
+
+        nav {
+            padding: 0 15px;
+        }
+
+        .button {
+            padding: 6px 12px;
+            font-size: 14px;
+        }
+
+        .scheme-title {
+            font-size: 20px;
+        }
+    }
+</style>
+
+<div class="nav">
+    <nav>
+        <a href="example.html"><img height="70px" width="70px" src="WhatsApp Image 2025-04-27 at 08.24.39_921c2409.jpg"></a>
+        <a href="business-setup.html" ><button class="button">Business Setup</button></a>
+        <a href="document1.html"><button class="button">Documentation</button></a>
+        <a href="ask-lawyer.html"><button class="button">Ask a Lawyer</button></a>
+        <a href="scheme_main.html"><button class="button">Government Scheme</button></a>
+        <button id="others" class="button">Others</button>
+    </nav>
+</div>
+
+<div class="main_scheme">
+    <div class="scheme-card">
+        <div>
+            <h2 class="scheme-title">PM Kisan Samman Nidhi Yojana (PM-KISAN)</h2>
+            <p class="scheme-description">This scheme provides ₹6,000 annually in three equal installments to small and marginal farmers, aiming to supplement their income and support agricultural activities.</p>
+        </div>
+        <button class="scheme-button">Learn More</button>
+    </div>
+    
+    <div class="scheme-card">
+        <div>
+            <h2 class="scheme-title"> Atal Bhujal Yojana (Atal Jal)</h2>
+            <p class="scheme-description">Launched in 2019, this scheme focuses on sustainable groundwater management in seven states, including Rajasthan. It promotes community participation to improve water use efficiency and recharge groundwater levels</p>
+        </div>
+        <button class="scheme-button">Learn More</button>
+    </div>
+    
+    <div class="scheme-card">
+        <div>
+            <h2 class="scheme-title"> Ayushman Bharat – Pradhan Mantri Jan Arogya Yojana (PM-JAY)</h2>
+            <p class="scheme-description">PM-JAY is a national public health insurance scheme that offers free access to secondary and tertiary healthcare services for low-income families. It aims to cover 10 crore families, providing cashless and paperless treatment at empaneled hospitals.</p>
+        </div>
+        <button class="scheme-button">Learn More</button>
+    </div>
+    
+    <div class="scheme-card">
+        <div>
+            <h2 class="scheme-title"> Scheme for First-Time Entrepreneurs</h2>
+            <p class="scheme-description">This initiative offers term loans up to ₹2 crore for five years to 5 lakh women, SC, and ST entrepreneurs. It also includes skill development programs to support new business ventures.</p>
+        </div>
+        <button class="scheme-button">Learn More</button>
+    </div>
+    
+    <div class="scheme-card">
+        <div>
+            <h2 class="scheme-title"> SWAMIH Fund 2</h2>
+            <p class="scheme-description">A ₹15,000 crore fund aimed at completing 1 lakh affordable and mid-income housing units. The fund focuses on finishing 50,000 stressed housing units by 2025, benefiting homebuyers facing delays in possession.</p>
+        </div>
+        <button class="scheme-button">Learn More</button>
+    </div>
+</div>
